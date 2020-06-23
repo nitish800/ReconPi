@@ -35,26 +35,23 @@ __________                          __________.__
 		export LANGUAGE=en_US.UTF-8
 		export LANG=en_US.UTF-8
 		export LC_ALL=en_US.UTF-8
-		sudo apt-get update -y
-		sudo apt-get install git -y
-		git clone https://github.com/maverickNerd/ReconPi
-		sudo apt-get install -y --reinstall build-essential
-		sudo apt install -y python3-pip
-		sudo apt install -y file
-		sudo apt-get install -y dnsutils
-		sudo apt install -y lua5.1 alsa-utils libpq5
-		sudo apt-get autoremove -y
-		sudo apt clean
+		apt-get install -y --reinstall build-essential
+		apt install -y python3-pip wget
+		apt install -y file
+		apt-get install -y dnsutils
+		apt install -y lua5.1 alsa-utils libpq5
+		apt-get autoremove -y
+		apt clean
 		echo -e "[$GREEN+$RESET] Stopping Docker service.."
-		sudo systemctl disable docker.service
-		sudo systemctl disable docker.socket
+		systemctl disable docker.service
+		systemctl disable docker.socket
 		echo -e "[$GREEN+$RESET] Creating directories.."
 		mkdir -p "$HOME"/tools
 		mkdir -p "$HOME"/go
 		mkdir -p "$HOME"/go/src
 		mkdir -p "$HOME"/go/bin
 		mkdir -p "$HOME"/go/pkg
-		sudo chmod u+w .
+		chmod u+w .
 		echo -e "[$GREEN+$RESET] Done."
 	}
 
@@ -68,8 +65,8 @@ golangInstall() {
 		cd "$HOME"/tools || return
 		git clone https://github.com/udhos/update-golang
 		cd "$HOME"/tools/update-golang || return
-		sudo bash update-golang.sh
-		sudo cp /usr/local/go/bin/go /usr/bin/ 
+		bash update-golang.sh
+		cp /usr/local/go/bin/go /usr/bin/ 
 		echo -e "[$GREEN+$RESET] Done."
 	fi
 
@@ -220,7 +217,7 @@ additionalTools() {
 		cd "$HOME"/tools/massdns || return
 		echo -e "[$GREEN+$RESET] Running make command for massdns.."
 		make -j
-		sudo cp "$HOME"/tools/massdns/bin/massdns /usr/local/bin/
+		cp "$HOME"/tools/massdns/bin/massdns /usr/local/bin/
 		echo -e "[$GREEN+$RESET] Done."
 	fi
 
@@ -230,11 +227,11 @@ additionalTools() {
 	echo -e "[$GREEN+$RESET] Done."
 
 	echo -e "[$GREEN+$RESET] Installing jq.."
-	sudo apt install -y jq
+	apt install -y jq
 	echo -e "[$GREEN+$RESET] Done."
 
 	echo -e "[$GREEN+$RESET] Installing Chromium browser.."
-	sudo apt install -y chromium-browser
+	apt install -y chromium-browser
 	echo -e "[$GREEN+$RESET] Done."
 
 	echo -e "[$GREEN+$RESET] Installing masscan.."
@@ -245,8 +242,8 @@ additionalTools() {
 		git clone https://github.com/robertdavidgraham/masscan
 		cd "$HOME"/tools/masscan || return
 		make -j
-		sudo cp bin/masscan /usr/local/bin/masscan
-		sudo apt install libpcap-dev -y
+		cp bin/masscan /usr/local/bin/masscan
+		apt install libpcap-dev -y
 		cd "$HOME"/tools/ || return
 		echo -e "[$GREEN+$RESET] Done."
 	fi
@@ -258,7 +255,7 @@ additionalTools() {
 		cd "$HOME"/tools/ || return
 		git clone https://github.com/s0md3v/Corsy.git
 		cd "$HOME"/tools/Corsy || return
-		sudo pip3 install -r requirements.txt
+		pip3 install -r requirements.txt
 		cd "$HOME"/tools/ || return
 		echo -e "[$GREEN+$RESET] Done."
 	fi
@@ -290,7 +287,7 @@ additionalTools() {
 		git clone https://github.com/ProjectAnte/dnsgen
 		cd "$HOME"/tools/dnsgen || return
 		pip3 install -r requirements.txt --user
-		sudo python3 setup.py install
+		python3 setup.py install
 		echo -e "[$GREEN+$RESET] Done."
 	fi
 
@@ -301,7 +298,7 @@ additionalTools() {
 		cd "$HOME"/tools/ || return
 		git clone https://github.com/yassineaboukir/sublert.git
 		cd "$HOME"/tools/sublert || return
-		sudo apt-get install -y libpq-dev dnspython psycopg2 tld termcolor
+		apt-get install -y libpq-dev dnspython psycopg2 tld termcolor
 		pip3 install -r requirements.txt --user
 		echo -e "[$GREEN+$RESET] Done."
 	fi
@@ -313,12 +310,12 @@ additionalTools() {
 	elif [[ "$arch" == "x86_64" ]]; then
 		wget https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux -O "$HOME"/tools/findomain
 		chmod +x "$HOME"/tools/findomain
-		sudo cp "$HOME"/tools/findomain /usr/local/bin
+		cp "$HOME"/tools/findomain /usr/local/bin
 		echo -e "[$GREEN+$RESET] Done."
 	else
 		wget https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-aarch64 -O "$HOME"/tools/findomain
 		chmod +x "$HOME"/tools/findomain
-		sudo cp "$HOME"/tools/findomain /usr/local/bin
+		cp "$HOME"/tools/findomain /usr/local/bin
 		echo -e "[$GREEN+$RESET] Done."
 	fi
 
@@ -341,7 +338,7 @@ additionalTools() {
 		git clone https://github.com/GerbenJavado/LinkFinder.git
 		cd "$HOME"/tools/LinkFinder || return
 		pip3 install -r requirements.txt --user
-		sudo python3 setup.py install
+		python3 setup.py install
 		echo -e "[$GREEN+$RESET] Done."
 	fi
 
@@ -353,7 +350,7 @@ additionalTools() {
 		cd "$HOME"/tools/ || return
 		git clone https://github.com/Abss0x7tbh/bass.git
 		cd "$HOME"/tools/bass || return
-		sudo pip3 install tldextract
+		pip3 install tldextract
 		pip3 install -r requirements.txt --user
 		echo -e "[$GREEN+$RESET] Done."
 	fi
@@ -365,12 +362,12 @@ additionalTools() {
 		cd "$HOME"/tools/ || return
 		git clone https://github.com/codingo/Interlace.git
 		cd "$HOME"/tools/Interlace || return
-		sudo python3 setup.py install
+		python3 setup.py install
 		echo -e "[$GREEN+$RESET] Done."
 	fi
 
 	echo -e "[$GREEN+$RESET] Installing nmap.."
-		sudo apt-get install -y nmap
+		apt-get install -y nmap
 		wget https://raw.githubusercontent.com/vulnersCom/nmap-vulners/master/vulners.nse -O /usr/share/nmap/scripts/vulners.nse && nmap --script-updatedb
 		echo -e "[$GREEN+$RESET] Done."
 
@@ -389,7 +386,7 @@ additionalTools() {
 	else
 		cd "$HOME"/tools/ || return
 		git clone https://github.com/m4ll0k/Shodanfy.py.git
-		sudo pip3 install lxml
+		pip3 install lxml
 		echo -e "[$GREEN+$RESET] Done."
 	fi
 
@@ -406,11 +403,11 @@ additionalTools() {
 : 'Dashboard setup'
 setupDashboard() {
 	echo -e "[$GREEN+$RESET] Installing Nginx.."
-	sudo apt-get install -y nginx
-	sudo nginx -t
+	apt-get install -y nginx
+	nginx -t
 	echo -e "[$GREEN+$RESET] Done."
 	cd /var/www/html/ || return
-	sudo chmod -R 755 .
+	chmod -R 755 .
 	# setup index.html??
 }
 
